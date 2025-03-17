@@ -4,11 +4,11 @@ WORKDIR /usr/src/app
 FROM base AS deps
 RUN mkdir -p /temp/dev
 COPY package.json bun.lock /temp/dev/
-RUN cd /temp/dev && bun install --frozen-lockfile
+RUN cd /temp/dev && bun install --frozen-lockfile --ignore-scripts
 
 RUN mkdir -p /temp/prod
 COPY package.json bun.lock /temp/prod/
-RUN cd /temp/prod && bun install --frozen-lockfile --production
+RUN cd /temp/prod && bun install --frozen-lockfile --production --ignore-scripts
 
 FROM base AS builder
 COPY --from=deps /temp/dev/node_modules node_modules

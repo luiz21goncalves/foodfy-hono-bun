@@ -5,13 +5,15 @@
     "build": "bun build src/http/server.ts --outdir ./dist --target bun",
     "start": "bun run dist/server.js",
     "lint": "bunx biome check .",
-    "lint:fix": "bunx biome check . --write"
+    "lint:fix": "bunx biome check . --write",
+    "prepare": "husky"
   },
   "dependencies": {
     "hono": "4.7.4"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "husky": "9.1.7"
   }
 }
