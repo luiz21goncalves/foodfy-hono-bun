@@ -16,7 +16,13 @@ describe(`GET ${PATH}`, () => {
       expect(response.status).toEqual(200)
       expect(body).toStrictEqual({
         updated_at: date.toISOString(),
-        dependencies: {},
+        dependencies: {
+          database: {
+            version: '17.4',
+            max_connections: 100,
+            opened_connections: 1,
+          },
+        },
       })
     })
   })
