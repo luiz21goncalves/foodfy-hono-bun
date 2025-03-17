@@ -6,7 +6,10 @@
     "start": "bun run dist/server.js",
     "lint": "bunx biome check .",
     "lint:fix": "bunx biome check . --write",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "bun test",
+    "test:cov": "bun test --coverage",
+    "test:watch": "bun test --watch"
   },
   "dependencies": {
     "hono": "4.7.4"
