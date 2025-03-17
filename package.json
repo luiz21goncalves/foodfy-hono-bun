@@ -3,12 +3,15 @@
   "scripts": {
     "dev": "bun run --hot src/http/server.ts",
     "build": "bun build src/http/server.ts --outdir ./dist --target bun",
-    "start": "bun run dist/server.js"
+    "start": "bun run dist/server.js",
+    "lint": "bunx biome check .",
+    "lint:fix": "bunx biome check . --write"
   },
   "dependencies": {
     "hono": "4.7.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/bun": "latest"
   }
 }
