@@ -13,10 +13,13 @@ export const pinoLogger = createMiddleware(async (c, next) => {
 
   const { status } = c.res
 
-  logger.info({
-    requestId,
-    response: { status, ok: c.res.ok, time: time(start) },
-  })
+  logger.info(
+    {
+      requestId,
+      response: { status, ok: c.res.ok, time: time(start) },
+    },
+    'Request completed'
+  )
 })
 
 function humanize(times: string[]): string {
