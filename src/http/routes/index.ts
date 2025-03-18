@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 
-import { status } from './status'
+import { statusRoutes } from './status'
 
 export const routes = new Hono().basePath('v1')
 
-routes.route('/status', status)
+routes.route('/status', statusRoutes)
