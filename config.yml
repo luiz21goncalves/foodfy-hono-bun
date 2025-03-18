@@ -1,0 +1,29 @@
+name: foodfy-hono-bun
+services:
+  database:
+    container_name: foodfy-hono-bun
+    environment:
+      DATABASE_URL: postgres://docker:docker@localhost:5432/foodfy-hono-bun?schema=public
+      POSTGRES_DB: foodfy-hono-bun
+      POSTGRES_HOST: localhost
+      POSTGRES_PASSWORD: docker
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: docker
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - sh -c 'pg_isready -U  -d '
+      timeout: 5s
+      interval: 10s
+      retries: 5
+    image: postgres:17.4-alpine3.21
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5432
+        published: "5432"
+        protocol: tcp
+networks:
+  default:
+    name: foodfy-hono-bun_default
