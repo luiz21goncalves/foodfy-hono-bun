@@ -1,7 +1,6 @@
-import { sql } from 'drizzle-orm'
-
 import { db } from '@/db/connection'
 import { ENV } from '@/env'
+import { sql } from 'drizzle-orm'
 
 export const status = {
   database: {

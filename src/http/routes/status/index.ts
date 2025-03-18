@@ -1,6 +1,5 @@
-import { Hono } from 'hono'
-
 import { status } from '@/models/status'
+import { Hono } from 'hono'
 
 export const statusRoutes = new Hono()
 
