@@ -1,6 +1,7 @@
 import { sql } from 'drizzle-orm'
 
 import { db } from '@/db/connection'
+import { ENV } from '@/env'
 
 export const status = {
   database: {
@@ -24,7 +25,7 @@ export const status = {
       const {
         rows: [{ count }],
       } = await db.execute<{ count: number }>(
-        sql`SELECT count(*)::int FROM pg_stat_activity WHERE datname = 'foodfy-hono-bun'`
+        sql`SELECT count(*)::int FROM pg_stat_activity WHERE datname = ${ENV.POSTGRES_DB}`
       )
 
       return count
