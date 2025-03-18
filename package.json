@@ -7,7 +7,7 @@
     "lint": "bunx biome check .",
     "lint:fix": "bunx biome check . --write",
     "prepare": "husky",
-    "test": "bun test",
+    "test": "NODE_ENV=test bun test",
     "test:cov": "bun test --coverage",
     "test:watch": "bun test --watch",
     "generate": "bun --env-file=.env.development drizzle-kit generate",
@@ -17,6 +17,7 @@
     "drizzle-orm": "0.40.1",
     "hono": "4.7.4",
     "pg": "8.14.1",
+    "pino": "9.6.0",
     "zod": "3.24.2"
   },
   "devDependencies": {
