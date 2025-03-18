@@ -8,6 +8,7 @@ const envSchema = z.object({
   POSTGRES_DB: z.string(),
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(['production', 'development', 'test']),
+  LOGGER_LEVEL: z.string().optional(),
 })
 
 export const ENV = envSchema.parse(process.env)
