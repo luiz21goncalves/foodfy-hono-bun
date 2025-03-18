@@ -9,7 +9,9 @@
     "prepare": "husky",
     "test": "bun test",
     "test:cov": "bun test --coverage",
-    "test:watch": "bun test --watch"
+    "test:watch": "bun test --watch",
+    "generate": "bun --env-file=.env.development drizzle-kit generate",
+    "migrate": "bun --env-file=.env.development drizzle-kit migrate"
   },
   "dependencies": {
     "drizzle-orm": "0.40.1",
