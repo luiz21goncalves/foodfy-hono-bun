@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
-import { app } from '@/http/app'
-import { user } from '@/models/user'
+import { usersService } from '@/api/users/users.service'
+import { app } from '@/app'
 import { faker } from '@faker-js/faker'
 
 const PATH = '/api/v1/users'
@@ -119,10 +119,9 @@ describe(`POST ${PATH}`, () => {
       const name = faker.person.fullName()
       const email = 'duplicated@email.com'
       const role = faker.helpers.arrayElement(['admin', 'writer'])
-      await user.create({
+      await usersService.create({
         email,
         name,
-        password: 'pass_123',
         role,
       })
 

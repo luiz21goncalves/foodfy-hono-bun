@@ -1,6 +1,6 @@
 import { describe, expect, setSystemTime, spyOn, test } from 'bun:test'
-import { app } from '@/http/app'
-import { status } from '@/models/status'
+import { statusService } from '@/api/status/status.service'
+import { app } from '@/app'
 
 const PATH = '/api/v1/status'
 
@@ -27,8 +27,9 @@ describe(`GET ${PATH}`, () => {
         },
       })
     })
+
     test('Retrieving an internal error', async () => {
-      const getVersionSpy = spyOn(status.database, 'getVersion')
+      const getVersionSpy = spyOn(statusService, 'getDatabaseVersion')
       getVersionSpy.mockImplementationOnce(() => {
         throw new Error('Mock database error')
       })

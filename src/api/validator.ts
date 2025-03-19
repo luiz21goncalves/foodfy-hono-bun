@@ -1,4 +1,4 @@
-import { ValidationError } from '@/errors/validation-error'
+import { ValidationError } from '@/api/errors/validation-error'
 import { logger } from '@/logger'
 import { zValidator as zv } from '@hono/zod-validator'
 import type { ValidationTargets } from 'hono'

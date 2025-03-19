@@ -5,7 +5,7 @@ type VerifyData = {
   hash: string
 }
 
-export const encrypt = {
+export const hashService = {
   hash(plain: string) {
     return password.hash(plain)
   },
