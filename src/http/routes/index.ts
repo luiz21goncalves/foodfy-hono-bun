@@ -1,3 +1,4 @@
+import { ConflictError } from '@/errors/conflict-error'
 import { InternalServerError } from '@/errors/internal-server-error'
 import { ValidationError } from '@/errors/validation-error'
 import { Hono } from 'hono'
@@ -10,6 +11,10 @@ routes.route('/status', statusRoutes)
 routes.route('/users', usersRoutes)
 
 routes.onError((error, c) => {
+  if (error instanceof ConflictError) {
+    return c.json(error, error.statusCode)
+  }
+
   if (error instanceof ValidationError) {
     return c.json(error, error.statusCode)
   }
