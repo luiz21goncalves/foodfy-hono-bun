@@ -1,12 +1,17 @@
-import { beforeAll } from 'bun:test'
+import { afterAll, beforeAll } from 'bun:test'
 import { execSync } from 'node:child_process'
 import { db } from '@/api/db/connection'
-import { sql } from 'drizzle-orm'
 
 beforeAll(async () => {
-  await db.execute(
-    sql`DROP SCHEMA IF EXISTS drizzle CASCADE; DROP SCHEMA IF EXISTS public CASCADE; CREATE SCHEMA public`
+  execSync(
+    `docker compose exec database sh -c "createdb -h ${process.env.POSTGRES_HOST} -p ${process.env.POSTGRES_PORT} -U ${process.env.POSTGRES_USER} ${process.env.POSTGRES_DB}"`
   )
-
   execSync('bun run migrate')
+})
+
+afterAll(async () => {
+  await db.$client.end()
+  execSync(
+    `docker compose exec database sh -c "dropdb -h ${process.env.POSTGRES_HOST} -p ${process.env.POSTGRES_PORT} -U ${process.env.POSTGRES_USER} ${process.env.POSTGRES_DB}"`
+  )
 })
