@@ -1,6 +1,6 @@
 services:
   database:
-    container_name: foodfy-hono-bun
+    container_name: foodfy-hono-bun-postgres-dev
     image: postgres:17.4-alpine3.21
     env_file:
       - .env.development

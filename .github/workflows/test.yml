@@ -12,6 +12,7 @@ jobs:
 
     services:
       database:
+        options: --name foodfy-hono-bun-postgres-dev
         image: postgres:17.4-alpine3.21
         ports:
           - 5432:5432
