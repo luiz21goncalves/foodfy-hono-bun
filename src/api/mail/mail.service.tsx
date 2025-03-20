@@ -1,3 +1,4 @@
+import { ENV } from '@/env'
 import { logger } from '@/logger'
 import { createTransport } from 'nodemailer'
 
@@ -63,7 +64,7 @@ export const mailService = {
 
     await mailService.send({
       to,
-      from: { name: 'Foodfy', email: 'no-replay@foodfy.com.br' },
+      from: { name: ENV.MAILER_FROM_NAME, email: ENV.MAILER_FROM_ADDRESS },
       html,
       text,
       subject: 'Bem-vindo ao Foodfy',
