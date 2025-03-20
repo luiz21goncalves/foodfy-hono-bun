@@ -1,8 +1,8 @@
 {
   "name": "foodfy-hono-bun",
   "scripts": {
-    "dev": "bun run --hot src/http/server.ts",
-    "build": "bun build src/http/server.ts --outdir ./dist --target bun",
+    "dev": "NODE_ENV=development bun run --hot src/server.ts",
+    "build": "bun build src/server.ts --outdir ./dist --target bun",
     "start": "bun run dist/server.js",
     "lint": "bunx biome check .",
     "lint:fix": "bunx biome check . --write",
@@ -10,8 +10,8 @@
     "test": "NODE_ENV=test bun test",
     "test:cov": "bun test --coverage",
     "test:watch": "bun test --watch",
-    "generate": "bun --env-file=.env.development drizzle-kit generate",
-    "migrate": "bun --env-file=.env.development drizzle-kit migrate"
+    "generate": "NODE_ENV=development bun --env-file=.env.development drizzle-kit generate",
+    "migrate": "NODE_ENV=development bun --env-file=.env.development drizzle-kit migrate"
   },
   "dependencies": {
     "@hono/zod-validator": "0.4.3",

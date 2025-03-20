@@ -1,6 +1,7 @@
 import { randomBytes } from 'node:crypto'
 import { ConflictError } from '../errors/conflict-error'
 import { hashService } from '../hash/hash.service'
+import { mailService } from '../mail/mail.service'
 import { usersRepository } from './users.repository'
 
 type CreateUserParams = {
@@ -29,6 +30,11 @@ export const usersService = {
       name,
       passwordHash,
       role,
+    })
+
+    await mailService.sendWelcome({
+      to: { name, email: formattedEmail },
+      params: { name, password, loginUrl: 'http://localhost:3000' },
     })
 
     return { user }

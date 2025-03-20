@@ -9,6 +9,7 @@ const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(['production', 'development', 'test']),
   LOGGER_LEVEL: z.string().optional(),
+  MAILER_SMTP_URL: z.string().url(),
 })
 
 export const ENV = envSchema.parse(process.env)
