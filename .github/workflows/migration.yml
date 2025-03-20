@@ -13,12 +13,9 @@ jobs:
     runs-on: ubuntu-24.04
     env:
       NODE_ENV: production
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-      POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      MAILER_SMTP_URL: smtp://localhost:1025/?disable_starttls=true
+      MAILER_FROM_ADDRESS: no-replay@foodfy.com.br
+      MAILER_FROM_NAME: Foodfy
 
     steps:
       - name: checkout repository
@@ -41,4 +38,11 @@ jobs:
         run: bun install
 
       - name: run migration
+        env:
+          POSTGRES_DB: ${{ env.DATABASE_URL }}
+          POSTGRES_HOST: ${{ env.POSTGRES_HOST }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_PORT: ${{ env.POSTGRES_PORT }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          DATABASE_URL: ${{ env.DATABASE_URL }}
         run: bunx drizzle-kit migrate
