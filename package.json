@@ -1,27 +1,34 @@
 {
   "name": "foodfy-hono-bun",
   "scripts": {
-    "dev": "bun run --hot src/http/server.ts",
-    "build": "bun build src/http/server.ts --outdir ./dist --target bun",
+    "dev": "NODE_ENV=development bun run --hot src/server.ts",
+    "build": "bun build src/server.ts --outdir ./dist --target bun",
     "start": "bun run dist/server.js",
     "lint": "bunx biome check .",
     "lint:fix": "bunx biome check . --write",
     "prepare": "husky",
-    "test": "bun test",
+    "test": "NODE_ENV=test bun test",
     "test:cov": "bun test --coverage",
-    "test:watch": "bun test --watch"
+    "test:watch": "bun test --watch",
+    "generate": "NODE_ENV=development bun --env-file=.env.development drizzle-kit generate",
+    "migrate": "NODE_ENV=development bun --env-file=.env.development drizzle-kit migrate"
   },
   "dependencies": {
+    "@hono/zod-validator": "0.4.3",
     "drizzle-orm": "0.40.1",
     "hono": "4.7.4",
+    "nodemailer": "6.10.0",
     "pg": "8.14.1",
+    "pino": "9.6.0",
     "zod": "3.24.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "19.8.0",
     "@commitlint/config-conventional": "19.8.0",
+    "@faker-js/faker": "9.6.0",
     "@types/bun": "latest",
+    "@types/nodemailer": "6.4.17",
     "@types/pg": "8.11.11",
     "drizzle-kit": "0.30.5",
     "husky": "9.1.7",

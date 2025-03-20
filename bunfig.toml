@@ -3,3 +3,4 @@ exact = true
 
 [test]
 coverageReporter = [ "text" ]
+preload = ["./tests/setup.ts"]

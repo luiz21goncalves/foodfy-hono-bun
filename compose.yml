@@ -1,6 +1,6 @@
 services:
   database:
-    container_name: foodfy-hono-bun
+    container_name: foodfy-hono-bun-postgres-dev
     image: postgres:17.4-alpine3.21
     env_file:
       - .env.development
@@ -11,3 +11,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - 1025:1025
+      - 8025:8025
