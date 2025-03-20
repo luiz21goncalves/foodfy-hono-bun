@@ -13,9 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     env:
       NODE_ENV: production
-      MAILER_SMTP_URL: smtp://localhost:1025/?disable_starttls=true
-      MAILER_FROM_ADDRESS: no-replay@foodfy.com.br
-      MAILER_FROM_NAME: Foodfy
+
 
     steps:
       - name: checkout repository
@@ -37,12 +35,21 @@ jobs:
       - name: install dependencies
         run: bun install
 
+      - name: make envfile
+        uses: SpicyPizza/create-envfile@v2
+        with:
+          envkey_POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          envkey_POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          envkey_POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+          envkey_POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          envkey_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          envkey_NODE_ENV: production
+          envkey_MAILER_SMTP_URL: smtp://localhost:1025/?disable_starttls=true
+          envkey_MAILER_FROM_ADDRESS: no-replay@foodfy.com.br
+          envkey_MAILER_FROM_NAME: Foodfy
+          file_name: .env
+          fail_on_empty: true
+
       - name: run migration
-        env:
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: bunx drizzle-kit migrate
+        run: bun --env-file=.env drizzle-kit migrate
