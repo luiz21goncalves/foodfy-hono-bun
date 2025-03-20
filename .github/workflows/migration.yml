@@ -39,10 +39,10 @@ jobs:
 
       - name: run migration
         env:
-          POSTGRES_DB: ${{ env.DATABASE_URL }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
           POSTGRES_HOST: ${{ env.POSTGRES_HOST }}
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           POSTGRES_PORT: ${{ env.POSTGRES_PORT }}
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
-          DATABASE_URL: "${{ env.DATABASE_URL }}"
+          DATABASE_URL: ${{ env.DATABASE_URL }}
         run: bunx drizzle-kit migrate
