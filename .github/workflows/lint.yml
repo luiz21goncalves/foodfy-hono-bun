@@ -3,7 +3,7 @@ name: Lint
 on: pull_request
 
 env:
-  bun: 1.2.5
+  bun: 1.2.8
 
 jobs:
   biome:
