@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@hono/zod-validator": "0.4.3",
-    "drizzle-orm": "0.40.1",
-    "hono": "4.7.4",
+    "drizzle-orm": "0.41.0",
+    "hono": "4.7.5",
     "nodemailer": "6.10.0",
     "pg": "8.14.1",
     "pino": "9.6.0",
@@ -30,7 +30,7 @@
     "@types/bun": "1.2.8",
     "@types/nodemailer": "6.4.17",
     "@types/pg": "8.11.11",
-    "drizzle-kit": "0.30.5",
+    "drizzle-kit": "0.30.6",
     "husky": "9.1.7",
     "lint-staged": "15.5.0"
   }
