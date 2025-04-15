@@ -3,7 +3,7 @@ name: Test
 on: pull_request
 
 env:
-  bun: 1.2.8
+  bun: 1.2.9
 
 jobs:
   test:
